@@ -1,0 +1,174 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- <header class="col-sm">
+        <nav class="sidebar-sticky bg-dark navbar-dark navbar-expand-md">
+          <a href="#" class="logo navbar-brand">Logo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto flex-column">
+              <li class="nav-item active">
+                <a href="" class="nav-link">О нас</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Проекты</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Команда</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Отзывы</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Контакты</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Контакты</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Контакты</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Контакты</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Контакты</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Контакты</a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">Контакты</a>
+              </li>
+  
+            </ul>
+          </div>
+        </nav>
+      </header> -->
+      <!-- end header -->
+  
+      <!--<main class="col-md-9">-->
+          <div class="container clear-top p-3" id="main">
+            <div>
+              <div class="col-md mx-auto ">
+                <div class="card rounded-0">
+                  <label class="card-header text-center" style="font-size: 20px;">
+                    Registration Form
+                  </label>
+                  <div class="card-body">
+                    <form [formGroup]="frmSignup" (submit)="submit()">
+                      <div class="form-group">
+                        <label for="login" [ngClass]="frmSignup.controls['login'].invalid ? 'text-danger' : ''">Login:</label>
+                        <input id="login" formControlName="login" type="text" class="form-control" [ngClass]="frmSignup.controls['login'].invalid ? 'is-invalid' : ''">
+                        <div class="row">
+                          <label class="col-sm-4" [ngClass]="frmSignup.controls['login'].hasError('required') || frmSignup.controls['login'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                            <i class="material-icons">{{ frmSignup.controls['login'].hasError('required') ||
+                              frmSignup.controls['login'].hasError('minlength') ? 'cancel' :
+                              'check_circle' }}</i>
+                            Must be at least 8 characters
+                          </label>
+                        </div>
+                          <div class="row">
+                            <label class="col-sm-4" [ngClass]="frmSignup.controls['login'].hasError('required') || frmSignup.controls['login'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
+                              <i class="material-icons">{{ frmSignup.controls['login'].hasError('required') ||
+                                frmSignup.controls['login'].hasError('hasSpecialCharacters') ? 'cancel' :
+                                'check_circle' }}</i>
+                              Must not contains the specials characters
+                            </label>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" [ngClass]="frmSignup.controls['email'].invalid ? 'text-danger' : ''">Email Address</label>
+                        <input id="email" formControlName="email" type="email" class="form-control" [ngClass]="frmSignup.controls['email'].invalid ? 'is-invalid' : ''">
+                        <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('required')">
+                          Email is Required
+                        </label>
+                        <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('email')">
+                          Enter a valid email address
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label for="password" [ngClass]="frmSignup.controls['password'].invalid ? 'text-danger' : ''">Password:</label>
+                        <input id="password" formControlName="password" type="password" class="form-control" [ngClass]="frmSignup.controls['password'].invalid ? 'is-invalid' : ''">
+                        <!-- <label class="text-danger col" *ngIf="frmSignup.controls['password'].hasError('required')">
+                          Password is Required!
+                        </label> -->
+                        <div class="row">
+                          <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
+                            <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
+                              frmSignup.controls['password'].hasError('minlength') ? 'cancel' :
+                              'check_circle' }}</i>
+                            Must be at least 8 characters
+                          </label>
+                        </div>
+                        <div class="row">
+                          <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
+                            <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
+                              frmSignup.controls['password'].hasError('hasNumber') ? 'cancel' :
+                              'check_circle' }}</i>
+                            Must contain at least 1 number
+                          </label>
+                        </div>
+                        <div class="row">
+                          <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
+                            <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
+                              frmSignup.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
+                              'check_circle' }}</i>
+                            Must contain at least 1 in Capital Case
+                          </label>
+                        </div>
+                        <div class="row">
+                          <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
+                            <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
+                              frmSignup.controls['password'].hasError('hasSmallCase') ? 'cancel' :
+                              'check_circle' }}</i>
+                            Must contain at least 1 Letter in Small Case
+                          </label>
+                        </div>
+                        <div class="row">
+                          <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
+                            <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
+                              frmSignup.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
+                              'check_circle' }}</i>
+                            Must contain at least 1 Special Character
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="confirmPassword" [ngClass]="frmSignup.controls['confirmPassword'].invalid ? 'text-danger' : ''">Confirm
+                          Password:</label>
+                        <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control"
+                          [ngClass]="frmSignup.controls['confirmPassword'].invalid ? 'is-invalid' : ''">
+                        <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('required')">
+                          Password is Required
+                        </label>
+                        <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('NoPassswordMatch')">
+                          Password do not match
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <button [disabled]="frmSignup.invalid" type="submit" class="btn btn-primary btn-block font-weight-bold">
+                          Sign up
+                        </button>
+                        <label class="col-md-12 text-danger text-center pt-4" *ngIf="regStatus === 1">
+                          This user already exists!
+                        </label>
+                        <label class="col-md-12 text-success text-center pt-4" *ngIf="regStatus === 0">
+                          Success!
+                        </label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md mt-5">
+              
+            </div>
+          </div>
+      <!-- </main>
+       end main
+    </div>
+  </div> -->

@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row float-sm-left">
+        <div class="col-sm-3 mb-5" *ngFor="let item of news">
+            <div class="card" style="border-width: 3px;">
+                <img class="card-img-top img-responsize" [src]="item.card.img" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{item.card.title}}</h5>
+                  <p class="card-text">{{item.card.text}}</p>
+                  <a href="#" class="btn btn-secondary btn-block">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 mb-5" *ngIf="hasAccess(Role.Admin)">    
+              <a role="button" (click)="openConstructor()" class="custom-card">
+                <div class="card" style="border-style: dashed; border-width: 3px;">
+                  <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/4/46/%D0%A1%D0%B5%D1%80%D1%8B%D0%B9_%D1%86%D0%B2%D0%B5%D1%82-_2014-03-15_18-16.jpg" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Wrapped with a tag</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                </div>
+              </a>
+        </div>
+    </div>
+</div>
+

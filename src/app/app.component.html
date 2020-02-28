@@ -1,116 +1,45 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-0">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" routerLink="/">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mx-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" routerLink="/news">News</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" routerLink="/">Pricing</a>
       </li>
     </ul>
   </div>
-</nav>
-
-<div id="wrap">
-  <div class="container clear-top p-3" id="main">
-    <div>
-      <div class="col-md mx-auto ">
-        <div class="card rounded-0">
-          <label class="card-header text-center" style="font-size: 20px;">
-            Registration Form
-          </label>
-          <div class="card-body">
-            <form [formGroup]="frmSignup" (submit)="submit()">
-              <div class="form-group">
-                <label for="email" [ngClass]="frmSignup.controls['email'].invalid ? 'text-danger' : ''">Email Address</label>
-                <input id="email" formControlName="email" type="email" class="form-control" [ngClass]="frmSignup.controls['email'].invalid ? 'is-invalid' : ''">
-                <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('required')">
-                  Email is Required
-                </label>
-                <label class="text-danger" *ngIf="frmSignup.controls['email'].hasError('email')">
-                  Enter a valid email address
-                </label>
-              </div>
-              <div class="form-group">
-                <label for="password" [ngClass]="frmSignup.controls['password'].invalid ? 'text-danger' : ''">Password:</label>
-                <input id="password" formControlName="password" type="password" class="form-control" [ngClass]="frmSignup.controls['password'].invalid ? 'is-invalid' : ''">
-                <!-- <label class="text-danger col" *ngIf="frmSignup.controls['password'].hasError('required')">
-                  Password is Required!
-                </label> -->
-                <div class="row">
-                  <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
-                    <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
-                      frmSignup.controls['password'].hasError('minlength') ? 'cancel' :
-                      'check_circle' }}</i>
-                    Must be at least 8 characters
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
-                    <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
-                      frmSignup.controls['password'].hasError('hasNumber') ? 'cancel' :
-                      'check_circle' }}</i>
-                    Must contain at least 1 number
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
-                    <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
-                      frmSignup.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
-                      'check_circle' }}</i>
-                    Must contain at least 1 in Capital Case
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasSmallCase')  ? 'text-danger' : 'text-success'">
-                    <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
-                      frmSignup.controls['password'].hasError('hasSmallCase') ? 'cancel' :
-                      'check_circle' }}</i>
-                    Must contain at least 1 Letter in Small Case
-                  </label>
-                </div>
-                <div class="row">
-                  <label class="col-sm-4" [ngClass]="frmSignup.controls['password'].hasError('required') || frmSignup.controls['password'].hasError('hasSpecialCharacters') ? 'text-danger' : 'text-success'">
-                    <i class="material-icons">{{ frmSignup.controls['password'].hasError('required') ||
-                      frmSignup.controls['password'].hasError('hasSpecialCharacters') ? 'cancel' :
-                      'check_circle' }}</i>
-                    Must contain at least 1 Special Character
-                  </label>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="confirmPassword" [ngClass]="frmSignup.controls['confirmPassword'].invalid ? 'text-danger' : ''">Confirm
-                  Password:</label>
-                <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control"
-                  [ngClass]="frmSignup.controls['confirmPassword'].invalid ? 'is-invalid' : ''">
-                <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('required')">
-                  Password is Required
-                </label>
-                <label class="text-danger" *ngIf="frmSignup.controls['confirmPassword'].hasError('NoPassswordMatch')">
-                  Password do not match
-                </label>
-              </div>
-              <div class="form-group">
-                <button [disabled]="frmSignup.invalid" type="submit" class="btn btn-primary btn-block font-weight-bold">Sign
-                  up</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+  <div class="dropdown w-10 h-10 pr-3" *ngIf="currentUser">
+    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img src="https://pbs.twimg.com/media/D4oVK3LVUAAc80P.jpg" class="rounded-circle" style="width: 32px; height: 32px;">
+    </button>
+    <div class="dropdown-menu pull-right" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item h4" href="#">{{currentUser.email}}</a>
+      <a class="dropdown-item" href="#"> {{currentUser.role}}</a>
+      <div class="dropdown-divider"></div>
+      <a type="button" class="dropdown-item text-info" (click)="Signout()">Sign Out</a>
     </div>
   </div>
-</div>
+  <form class="form-inline" *ngIf ="!currentUser">
+    <div class="form-group">
+      <a routerLink="/reg" class="btn btn-primary btn active" role="button" aria-pressed="true">Sign Up</a>
+    </div>
+    <div class="form-group">
+      <a routerLink="/login" class="btn btn-success btn active" role="button" aria-pressed="true">Sign In</a>
+    </div>
+  </form>
+</nav> 
+<router-outlet></router-outlet>
 
-<footer class="footer pt-8" style="background-color: rgba(3, 3, 3, 0.336);">
+ <!-- <footer class="footer pt-8" style="background-color: rgba(3, 3, 3, 0.336);">
   <div class="footer-copyright text-center py-3">© 2020 Copyright:
     <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
   </div>
-</footer>
+</footer>  -->
